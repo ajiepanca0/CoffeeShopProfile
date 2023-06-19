@@ -54,4 +54,14 @@ class ProductController extends Controller
         return redirect()->back()->with('success', 'Produk berhasil diupdate');
     }
 
+    
+    public function deleteProduk(Request $request, $id)
+    {
+
+        $produk = ProductModel::find($id);
+        $produk->delete();
+
+        return redirect()->back()->with('success', 'Produk berhasil dihapus');
+    }
+
 }

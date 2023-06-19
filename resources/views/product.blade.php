@@ -491,24 +491,24 @@
     @endforeach
 
     @foreach($product as $g)
-    <div class="modal fade bd-example-modal-lg" id="modalHapusBlog{{$g->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade bd-example-modal-lg" id="modalHapusProduk{{$g->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Edit Blog</h5>
+              <h5 class="modal-title" id="exampleModalLabel">Edit Produk</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div class="modal-body">
 
-                <form action="{{ route('blogDelete', ['id' => $d->id]) }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('produkDelete', ['id' => $d->id]) }}" method="POST" enctype="multipart/form-data">
                     @csrf
 
                     <input type="hidden" value="{{$g->id}}" name="id" required>
 
                     <div class="form-group">
-                        <h4>Apakah Anda Ingin Menghapus Blog ini?</h4>
+                        <h4>Apakah Anda Ingin Menghapus Produk ini?</h4>
                     </div>
 
                     <div class="modal-footer">
