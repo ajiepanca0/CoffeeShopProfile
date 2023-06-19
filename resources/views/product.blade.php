@@ -30,70 +30,70 @@
     <!-- Page Wrapper -->
     <div id="wrapper">
 
-        <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-coklat sidebar sidebar-dark accordion" id="accordionSidebar">
+       <!-- Sidebar -->
+       <ul class="navbar-nav bg-gradient-coklat sidebar sidebar-dark accordion" id="accordionSidebar">
 
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-                {{-- <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
-                </div> --}}
-                <div class="sidebar-brand-text mx-3">UD.DJAYA</div>
-            </a>
+        <!-- Sidebar - Brand -->
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            {{-- <div class="sidebar-brand-icon rotate-n-15">
+                <i class="fas fa-laugh-wink"></i>
+            </div> --}}
+            <div class="sidebar-brand-text mx-3">UD.DJAYA</div>
+        </a>
 
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
+        <!-- Divider -->
+        <hr class="sidebar-divider my-0">
 
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
-                <a class="nav-link" href="index.html">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
-            </li>
+        <!-- Nav Item - Dashboard -->
+        <li class="nav-item active">
+            <a class="nav-link" href="index.html">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>Dashboard</span></a>
+        </li>
 
-            <!-- Divider -->
-            <hr class="sidebar-divider">
+        <!-- Divider -->
+        <hr class="sidebar-divider">
 
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Admin
-            </div>
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            Admin
+        </div>
 
 
-            <li class="nav-item">
-                <a class="nav-link" href="/blog">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Blog</span></a>
-            </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/blog">
+                <i class="fas fa-fw fa-chart-area"></i>
+                <span>Blog</span></a>
+        </li>
 
-            <li class="nav-item">
-                <a class="nav-link" href="/product">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Product</span></a>
-            </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/product">
+                <i class="fas fa-fw fa-chart-area"></i>
+                <span>Product</span></a>
+        </li>
 
-            
-            <li class="nav-item">
-                <a class="nav-link" href="/promo">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Promo</span></a>
-            </li>
+        
+        <li class="nav-item">
+            <a class="nav-link" href="/promo">
+                <i class="fas fa-fw fa-chart-area"></i>
+                <span>Promo</span></a>
+        </li>
 
-            
+        
 
-            <!-- Divider -->
-            <hr class="sidebar-divider">
+        <!-- Divider -->
+        <hr class="sidebar-divider">
 
-            <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
+        <!-- Divider -->
+        <hr class="sidebar-divider d-none d-md-block">
 
-            <!-- Sidebar Toggler (Sidebar) -->
-            <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
-            </div>
+        <!-- Sidebar Toggler (Sidebar) -->
+        <div class="text-center d-none d-md-inline">
+            <button class="rounded-circle border-0" id="sidebarToggle"></button>
+        </div>
 
-        </ul>
-        <!-- End of Sidebar -->
+    </ul>
+    <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
@@ -311,12 +311,12 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Blog</h1>
+                    <h1 class="h3 mb-2 text-gray-800">Product</h1>
 
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
                             <button type="button" class="btn btn-coklat" data-toggle="modal" data-target="#exampleModal">
-                                Tambah Blog
+                                Tambah Product
                               </button>                            
                         </div>
                         <div class="card-body">
@@ -324,9 +324,9 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>Judul</th>
+                                            <th>Nama</th>
                                             <th>Deskripsi</th>
-                                            <th>Foto</th>
+                                            <th>Harga</th>
                                             <th>created_at</th>
                                             <th>Action</th>
                                             
@@ -334,18 +334,12 @@
                                     </thead>
 
                                     <tbody>
-                                        @foreach ($datablog as $item)
+                                        @foreach ($product as $item)
                                         
                                         <tr>
-                                            <td>{{$item->judul}}</td>
-                                            <td>{{$item->deskripsi}}</td>
-                                            <td>
-                                                @if ($item->foto)
-                                                    <div>
-                                                        <img src="{{ asset('storage/images/blog/'.$item->foto) }}" alt="Foto Blog" width="200" height="200">
-                                                    </div>
-                                                @endif
-                                            </td>
+                                            <td>{{$item->name}}</td>
+                                            <td>{{$item->description}}</td>
+                                            <td>{{$item->price}}</td>
                                             <td>{{$item->created_at}}</td>
                                             <td>
                                                 <a href="#modalEditBlog{{$item->id}}" data-toggle="modal" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i>Edit</a>
@@ -417,18 +411,18 @@
         <div class="modal-dialog modal-lg" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Tambah Blog</h5>
+              <h5 class="modal-title" id="exampleModalLabel">Tambah Produk</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div class="modal-body">
 
-                <form action="{{ route('addBlog') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('addProduk') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
-                        <label for="judul">Judul</label>
-                        <input type="text" class="form-control" name="judul" placeholder="Masukan Judul">
+                        <label for="name">Nama</label>
+                        <input type="text" class="form-control" name="nama" placeholder="Masukan Nama Produk">
                     </div>
 
                     <div class="form-group">
@@ -436,9 +430,10 @@
                         <input type="text" class="form-control" name="deskripsi" placeholder="Masukan Deskripsi">
                     </div>
 
+
                     <div class="form-group">
-                        <label for="foto">Foto</label>
-                        <input type="file" class="form-control" name="foto" placeholder="Masukan Foto">
+                        <label for="deskripsi">Harga</label>
+                        <input type="number" class="form-control" name="harga" placeholder="Masukan Harga">
                     </div>
 
                     <div class="modal-footer">
@@ -452,7 +447,7 @@
         </div>
     </div>
 
-    @foreach($datablog as $d)
+    @foreach($product as $d)
     <div class="modal fade bd-example-modal-lg" id="modalEditBlog{{$d->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
           <div class="modal-content">
@@ -493,7 +488,7 @@
     </div>
     @endforeach
 
-    @foreach($datablog as $g)
+    @foreach($product as $g)
     <div class="modal fade bd-example-modal-lg" id="modalHapusBlog{{$g->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
           <div class="modal-content">
@@ -535,14 +530,14 @@
     <script src="admin/assets/vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="admin/assets/js/sb-admin-2.min.js"></script>
+    <script src="js/sb-admin-2.min.js"></script>
 
     <!-- Page level plugins -->
     <script src="admin/assets/vendor/datatables/jquery.dataTables.min.js"></script>
     <script src="admin/assets/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="admin/assets/js/demo/datatables-demo.js"></script>
+    <script src="js/demo/datatables-demo.js"></script>
 
 </body>
 
