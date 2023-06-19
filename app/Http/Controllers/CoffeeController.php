@@ -11,4 +11,5 @@ class CoffeeController extends Controller
     {
         return view('coffee');
     }
+
 }

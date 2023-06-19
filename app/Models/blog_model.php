@@ -9,4 +9,11 @@ class blog_model extends Model
 {
     use HasFactory;
     protected $table = 'blogs';
+    protected $fillable = [
+        'judul',
+        'deskripsi',
+        'foto',
+        'created_at',
+        'updated_at',
+    ];
 }

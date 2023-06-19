@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Tables</title>
+    <title>Coffee Ud Djaya</title>
 
     <!-- Custom fonts for this template -->
     <link href="admin/assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -379,16 +379,36 @@
                                             <th>Deskripsi</th>
                                             <th>Foto</th>
                                             <th>created_at</th>
+                                            <th>Action</th>
                                             
                                         </tr>
                                     </thead>
 
                                     <tbody>
+                                        @foreach ($datablog as $item)
+                                        
                                         <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td>System Architect</td>
-                                            <td>Edinburgh</td>
-                                            <td>Edinburgh</td>
+                                            <td>{{$item->judul}}</td>
+                                            <td>{{$item->deskripsi}}</td>
+                                            <td>
+                                                @if ($item->foto)
+                                                    <div>
+                                                        <img src="{{ asset('storage/images/blog/'.$item->foto) }}" alt="Foto Blog" width="200" height="200">
+                                                    </div>
+                                                @endif
+                                            </td>
+                                            <td>{{$item->created_at}}</td>
+                                            <td>
+                                                <a href="#modalEditBlog{{$item->id}}" data-toggle="modal" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i>Edit</a>
+                                                <a href="#modalHapusBlog{{$item->id}}" data-toggle="modal" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i>Hapus</a>
+                                                
+                                            </td>
+
+                                        </tr>
+
+
+                                        @endforeach
+                                        <tr>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -443,6 +463,7 @@
         </div>
     </div>
 
+
     <div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
           <div class="modal-content">
@@ -454,34 +475,108 @@
             </div>
             <div class="modal-body">
 
-                <div class="form-group">
-                    <label for="judul">Judul</label>
-                    <input type="text" class="form-control form-control-user" id="inputjudul"
-                        placeholder="Masukan Judul">
-                </div>
+                <form action="{{ route('addBlog') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div class="form-group">
+                        <label for="judul">Judul</label>
+                        <input type="text" class="form-control" name="judul" placeholder="Masukan Judul">
+                    </div>
 
-                <div class="form-group">
-                    <label for="deskripsi">Deskripsi</label>
-                    <input type="text" class="form-control form-control-user" id="inputdeskripsi"
-                        placeholder="Masukan Deskripsi">
-                </div>
+                    <div class="form-group">
+                        <label for="deskripsi">Deskripsi</label>
+                        <input type="text" class="form-control" name="deskripsi" placeholder="Masukan Deskripsi">
+                    </div>
 
-                
-                <div class="form-group">
-                    <label for="foto">Foto</label>
-                    <input type="file" class="form-control form-control-user" id="inputfoto"
-                        placeholder="Masukan Foto">
-                </div>
+                    <div class="form-group">
+                        <label for="foto">Foto</label>
+                        <input type="file" class="form-control" name="foto" placeholder="Masukan Foto">
+                    </div>
 
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-coklat">Save changes</button>
+                    </div>
+                </form>
 
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-coklat">Save changes</button>
             </div>
           </div>
         </div>
-      </div>
+    </div>
+
+    @foreach($datablog as $d)
+    <div class="modal fade bd-example-modal-lg" id="modalEditBlog{{$d->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Edit Blog</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+
+                <form action="{{ route('blogUpdate', ['id' => $d->id]) }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div class="form-group">
+                        <label for="judul">Judul</label>
+                        <input type="text" class="form-control" value="{{$d->judul}}" name="judul" placeholder="Masukan Judul">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="deskripsi">Deskripsi</label>
+                        <input type="text" value="{{$d->deskripsi}}" class="form-control" name="deskripsi" placeholder="Masukan Deskripsi">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="foto">Foto</label>
+                        <input type="file" value="{{ asset('storage/images/blog/'.$item->foto) }}" class="form-control" name="foto" placeholder="Masukan Foto">
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-coklat">Save changes</button>
+                    </div>
+                </form>
+
+            </div>
+          </div>
+        </div>
+    </div>
+    @endforeach
+
+    @foreach($datablog as $g)
+    <div class="modal fade bd-example-modal-lg" id="modalHapusBlog{{$g->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Edit Blog</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+
+                <form action="{{ route('blogDelete', ['id' => $d->id]) }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+
+                    <input type="hidden" value="{{$g->id}}" name="id" required>
+
+                    <div class="form-group">
+                        <h4>Apakah Anda Ingin Menghapus Blog ini?</h4>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-coklat">Save changes</button>
+                    </div>
+                </form>
+
+            </div>
+          </div>
+        </div>
+    </div>
+    @endforeach
+
 
     <!-- Bootstrap core JavaScript-->
     <script src="admin/assets/vendor/jquery/jquery.min.js"></script>
