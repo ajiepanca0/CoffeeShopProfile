@@ -28,6 +28,8 @@
         <link rel="stylesheet" href="assets/css/animate.min.css">
         <link rel="stylesheet" href="assets/css/owl.carousel.css">
         <link rel="stylesheet" href="assets/css/main.css">
+        <link rel="stylesheet" href="assets/css/animeloading.css">
+
     </head>
     <body>
 
@@ -404,28 +406,27 @@
                 <div class="row d-flex justify-content-center">
                     <div class="col-lg-7">
                       <div>
-                        <form class="user">
-                          <div class="form-group">
-                            <input type="email" class="form-control form-control-user" id="exampleInputEmail" placeholder="Full Name ..." />
-                          </div>
-                          <div class="form-group row">
+                        <form action="{{ route('sendPromo') }}" method="POST" enctype="multipart/form-data">
+                            @csrf                          
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-user" id="exampleInputname" name="name" placeholder="Full Name ..." />
+                        </div>
+                        <div class="form-group row">
                             <div class="col-sm-6 mb-3 mb-sm-0">
-                              <input type="text" class="form-control form-control-user" id="exampleInputtext" placeholder="Place Of Birth ..." />
+                            <input type="text" class="form-control form-control-user" id="exampleInputtext" name="birth_place" placeholder="Place Of Birth ..." />
                             </div>
                             <div class="col-sm-6">
-                              <input type="date" class="form-control form-control-user" id="exampleRepeattext"  />
+                            <input type="date" class="form-control form-control-user" id="exampleRepeattext" name="birth_date"  />
                             </div>
-                          </div>
+                        </div>
 
-                          <div class="form-group">
-                            <input type="number" class="form-control form-control-user" id="exampleInputEmail" placeholder="Phone Number ..." />
-                          </div>
+                        <div class="form-group">
+                            <input type="number" class="form-control form-control-user" id="exampleInputEmail" placeholder="Phone Number ..." name="phone"/>
+                        </div>
 
-                          <button style="background:#3e3425; color:white" class="btn btn-coklat btn-user btn-block"> Send Data </button>
-
+                        <button type="submit" style="background:#3e3425; color:white" class="btn btn-coklat btn-user btn-block"> Send Data </button>
 
                         </form>
-
                       </div>
                     </div>
                   </div>
