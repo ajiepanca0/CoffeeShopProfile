@@ -32,6 +32,7 @@ Route::post('/blog/{id}/delete', [BlogController::class,'deleteBlog'])->name('bl
 
 Route::get('/product', [ProductController::class, 'index']);
 Route::post('/add-Produk', [ProductController::class, 'addProduk'])->name('addProduk');
+Route::post('/produk/{id}/update', [ProductController::class,'updateProduk'])->name('produkUpdate');
 
 
 Route::post('/sendpromo', [CoffeeController::class, 'sendPromo'])->name('sendPromo');

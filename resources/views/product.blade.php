@@ -342,8 +342,8 @@
                                             <td>{{$item->price}}</td>
                                             <td>{{$item->created_at}}</td>
                                             <td>
-                                                <a href="#modalEditBlog{{$item->id}}" data-toggle="modal" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i>Edit</a>
-                                                <a href="#modalHapusBlog{{$item->id}}" data-toggle="modal" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i>Hapus</a>
+                                                <a href="#modalEditProduk{{$item->id}}" data-toggle="modal" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i>Edit</a>
+                                                <a href="#modalHapusProduk{{$item->id}}" data-toggle="modal" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i>Hapus</a>
                                                 
                                             </td>
 
@@ -448,33 +448,35 @@
     </div>
 
     @foreach($product as $d)
-    <div class="modal fade bd-example-modal-lg" id="modalEditBlog{{$d->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade bd-example-modal-lg" id="modalEditProduk{{$d->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Edit Blog</h5>
+              <h5 class="modal-title" id="exampleModalLabel">Edit Produk</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div class="modal-body">
 
-                <form action="{{ route('blogUpdate', ['id' => $d->id]) }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('produkUpdate', ['id' => $d->id]) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
-                        <label for="judul">Judul</label>
-                        <input type="text" class="form-control" value="{{$d->judul}}" name="judul" placeholder="Masukan Judul">
+                        <label for="name">Nama</label>
+                        <input type="text" class="form-control" value="{{$d->name}}" name="nama" placeholder="Masukan nama...">
                     </div>
 
                     <div class="form-group">
                         <label for="deskripsi">Deskripsi</label>
-                        <input type="text" value="{{$d->deskripsi}}" class="form-control" name="deskripsi" placeholder="Masukan Deskripsi">
+                        <input type="text" value="{{$d->description}}" class="form-control" name="deskripsi" placeholder="Masukan deskripsi...">
                     </div>
 
+                    
                     <div class="form-group">
-                        <label for="foto">Foto</label>
-                        <input type="file" value="{{ asset('storage/images/blog/'.$item->foto) }}" class="form-control" name="foto" placeholder="Masukan Foto">
+                        <label for="harga">Harga</label>
+                        <input type="number" value="{{$d->price}}" class="form-control" name="harga" placeholder="Masukan harga...">
                     </div>
+
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

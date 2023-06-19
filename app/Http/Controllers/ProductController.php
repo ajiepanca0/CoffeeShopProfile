@@ -40,4 +40,18 @@ class ProductController extends Controller
 
     }
 
+    public function updateProduk(Request $request, $id)
+    {
+        
+        $produk = ProductModel::find($id);
+
+        $produk->name             = $request->nama;
+        $produk->description     = $request->deskripsi;
+        $produk->price            = $request->harga;
+        $produk->updated_at       = date('Y-m-d H:i:s');
+        $produk->save();
+
+        return redirect()->back()->with('success', 'Produk berhasil diupdate');
+    }
+
 }
