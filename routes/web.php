@@ -4,6 +4,7 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CoffeeController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\PromoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,6 +35,13 @@ Route::get('/product', [ProductController::class, 'index']);
 Route::post('/add-Produk', [ProductController::class, 'addProduk'])->name('addProduk');
 Route::post('/produk/{id}/update', [ProductController::class,'updateProduk'])->name('produkUpdate');
 Route::post('/produk/{id}/delete', [ProductController::class,'deleteProduk'])->name('produkDelete');
+
+
+Route::get('/promo', [PromoController::class, 'index']);
+Route::post('/add-Promo', [PromoController::class, 'addPromo'])->name('addPromo');
+Route::post('/promo/{id}/update', [PromoController::class,'updatePromo'])->name('promoUpdate');
+Route::post('/promo/{id}/delete', [PromoController::class,'deletePromo'])->name('promoDelete');
+
 
 
 Route::post('/sendpromo', [CoffeeController::class, 'sendPromo'])->name('sendPromo');
