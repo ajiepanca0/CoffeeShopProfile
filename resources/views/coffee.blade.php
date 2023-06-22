@@ -111,22 +111,30 @@
                             <p>Who are in extremely love with eco friendly system.</p>
                         </div>
                     </div>
-                </div>						
+                </div>		
+                
+                    
                 <div class="row">
+                    @foreach ($dataproduct as $item)
+
                     <div class="col-lg-4">
                         <div class="single-menu">
                             <div class="title-div justify-content-between d-flex">
-                                <h4>Cappuccino</h4>
+                                <h4>{{$item->name}}</h4>
                                 <p class="price float-right">
-                                    $49
+                                    ${{$item->price}}
                                 </p>
                             </div>
                             <p>
-                                Usage of the Internet is becoming more common due to rapid advance.
+                                {{$item->description}}
                             </p>								
                         </div>
                     </div>
-                    <div class="col-lg-4">
+
+                    @endforeach
+
+
+                    {{-- <div class="col-lg-4">
                         <div class="single-menu">
                             <div class="title-div justify-content-between d-flex">
                                 <h4>Americano</h4>
@@ -229,7 +237,8 @@
                                 Usage of the Internet is becoming more common due to rapid advance.
                             </p>								
                         </div>
-                    </div>															
+                    </div>	 --}}
+
                 </div>
             </div>	
         </section>
@@ -359,34 +368,40 @@
                     </div>
                 </div>						
                 <div class="row">
+
+                    @foreach ($datablog as $item)
+                        
+
                     <div class="col-lg-6 col-md-6 single-blog">
-                        <img class="img-fluid" src="assets/img/b1.jpg" alt="">
-                        <ul class="post-tags">
-                            <li><a href="#">Travel</a></li>
-                            <li><a href="#">Life Style</a></li>
-                        </ul>
-                        <a href="#"><h4>Portable latest Fashion for young women</h4></a>
+                        <img class="img-fluid" src="{{ asset('storage/images/blog/'.$item->foto) }}" alt="">
+                        <a href="#"><h4 style="margin-top: 5%">{{$item->judul}}</h4></a>
                         <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore  et dolore.
+                            {{$item->deskripsi}}
                         </p>
                         <p class="post-date">
-                            31st January, 2018
+                            @php
+                                $date = date_create($item->updated_at);
+                                $tanggal = date_format($date, "d F Y");
+                            @endphp
+                            {{$tanggal}}
                         </p>
                     </div>
+
+                    @endforeach
+
+
                     <div class="col-lg-6 col-md-6 single-blog">
                         <img class="img-fluid" src="assets/img/b2.jpg" alt="">
-                        <ul class="post-tags">
-                            <li><a href="#">Travel</a></li>
-                            <li><a href="#">Life Style</a></li>
-                        </ul>
-                        <a href="#"><h4>Portable latest Fashion for young women</h4></a>
+
+                        <a href="#"><h4 style="margin-top: 5%">Portable latest Fashion for young women</h4></a>
                         <p>
                             Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore  et dolore.
                         </p>
                         <p class="post-date">
                             31st January, 2018
                         </p>
-                    </div>						
+                    </div>	
+
                 </div>
             </div>	
         </section>
@@ -398,7 +413,6 @@
                     <div class="menu-content pb-60 col-lg-10">
                         <div class="title text-center">
                             <h1 class="mb-10">Claim Promo Code</h1>
-                            <p>Please insert data !!! </p>
                         </div>
                     </div>
                 </div>
